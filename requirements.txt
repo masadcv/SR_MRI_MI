@@ -1,0 +1,5 @@
+torchmetrics==0.9.1
+torch==1.7.1
+tensorboardX==2.6.2.2
+einops
+tqdm

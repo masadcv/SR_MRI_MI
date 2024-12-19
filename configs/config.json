@@ -1,0 +1,37 @@
+{
+    "work_dir": "./experiments",
+    "dataloader": {
+        "batch_size": 1,
+        "dataset": "FASTMRI",
+        "num_sel_train_images": 10,
+        "num_sel_val_images": 3,
+        "num_sel_test_images": 3,
+        "path_to_data": "/data/KCLData/Datasets/MICCAI2025/fastmri",
+        "split": "train",
+        "challenge": "singlecoil",
+        "subtask": "knee",
+        "scale": 2,
+        "num_workers": 4,
+        "num_classes": 1
+    },
+    "loss": {
+        "content_loss": "L1",
+        "auxilary_loss": "L1",
+        "auxilary_weight": 1
+    },
+    "optimiser": {
+        "type": "ADAM",
+        "lr": 0.001,
+        "momentum": 0.9,
+        "scheduler_type": "COSINE",
+        "scheduler_lr_step": [0.3, 0.7, 0.9],
+        "scheduler_lr_factor": 0.1
+    },
+    "training": {
+        "use_cuda": true,
+        "log_interval": 1,
+        "eval_interval": 1,
+        "epochs": 150,
+        "val_metrics": ["L1", "L2", "PSNR", "SSIM"]
+    }
+}

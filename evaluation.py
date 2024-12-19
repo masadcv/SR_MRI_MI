@@ -47,9 +47,9 @@ def main():
         data_transform=None,
         splitset='val',
         scale=dataloader_config["scale"],
-        batch_size=1,
-        num_workers=4,
-        sample_rate=None,
+        batch_size=dataloader_config["batch_size"],
+        num_workers=dataloader_config["num_workers"],
+        sample_rate=1,
     )
 
     # create working directories

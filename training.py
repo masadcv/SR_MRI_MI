@@ -77,8 +77,8 @@ def main():
         data_transform=None,
         splitset='train',
         scale=dataloader_config["scale"],
-        batch_size=1,
-        num_workers=4,
+        batch_size=dataloader_config["batch_size"],
+        num_workers=dataloader_config["num_workers"],
         sample_rate=1,
     )
     val_loader = dataset.slicedataset.create_data_loader(
@@ -88,21 +88,22 @@ def main():
         data_transform=None,
         splitset='val',
         scale=dataloader_config["scale"],
-        batch_size=1,
-        num_workers=4,
+        batch_size=dataloader_config["batch_size"],
+        num_workers=dataloader_config["num_workers"],
         sample_rate=1,
     )
 
 
     # create working directories
+    scale = dataloader_config["scale"]
     work_dir = os.path.join(
-        exp_config["work_dir"], args.model, dataloader_config["dataset"]
+        exp_config["work_dir"], args.model + f"_{scale}", dataloader_config["dataset"]
     )
     os.makedirs(work_dir, exist_ok=True)
     
     # create the tensorboard folder from date/time to log training params
     loss_config = exp_config["loss"]
-    current_date = datetime.datetime.now().strftime("%Y_%m_%d_%H-%M")
+    current_date = datetime.datetime.now().strftime("%Y_%m_%d_%H-%M-%S")
     exp_details = "{}_{}".format(args.model, loss_config["content_loss"])
     tensorboard_folder = os.path.join(work_dir, current_date + "_" + exp_details)
     tb_writer = tensorboardX.SummaryWriter(log_dir=tensorboard_folder)

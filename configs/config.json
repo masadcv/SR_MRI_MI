@@ -1,7 +1,7 @@
 {
     "work_dir": "./experiments",
     "dataloader": {
-        "batch_size": 1,
+        "batch_size": 4,
         "dataset": "FASTMRI",
         "num_sel_train_images": 10,
         "num_sel_val_images": 3,
@@ -11,8 +11,7 @@
         "challenge": "singlecoil",
         "subtask": "knee",
         "scale": 2,
-        "num_workers": 4,
-        "num_classes": 1
+        "num_workers": 8
     },
     "loss": {
         "content_loss": "L1",
